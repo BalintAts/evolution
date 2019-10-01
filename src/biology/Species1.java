@@ -1,10 +1,13 @@
 package biology;
 
+import com.sun.javafx.geom.Vec2d;
+import javafx.scene.image.Image;
 import utils.RandomUtil;
 
-import javax.swing.text.html.ImageView;
+import javax.swing.text.Element;
+import javafx.scene.image.ImageView;
 
-public class Species1 extends ImageView {
+public class Species1 extends Entity {
 
     private float deathByChance;
     private float baseDeathByChance;
@@ -27,8 +30,7 @@ public class Species1 extends ImageView {
         return iWillDie;
     }
 
-    public Species1(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings) {
-        super(colony, environment, hasColor, hasWings);
+    public Species1(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings) { ;
         numberOfSpecies1++;
         this.colony = colony;
         this.environment = environment;
@@ -37,7 +39,15 @@ public class Species1 extends ImageView {
         this.deathByChance = environment.getPredators();
         this.baseDeathByChance = deathByChance;
         mutate();
+        setImage(new Image("face-without-mouth.jpg"));
+//        Vec2d positionInit = new Vec2d(300,300);
+//        setPosition(positionInit);
+        setX(300);
+        setY(300);
+
     }
+
+
 
     public void die() {
         if (remainingLifeTime < 0 || RandomUtil.getRandomNumberInRange(0, 100) < deathByChance) {

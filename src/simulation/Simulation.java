@@ -46,9 +46,10 @@ public class Simulation extends Pane {
     }
 
     public void render(){
-        for(Species1 member: colony.getSpecies1Set()){
-            display.add(member);
-        }
+        display.clear();
+//        for(Species1 member: colony.getSpecies1Set()){
+//            display.add(member);
+//        }
     }
 
     public void simulationLoop(){
