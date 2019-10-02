@@ -31,9 +31,15 @@ public class Species1 extends Entity {
     private boolean iWillDie = false;
     private Circle circle;
 
+    public ColonyManipulate getColony() {
+        return colony;
+    }
+
     public boolean isiWillDie() {
         return iWillDie;
     }
+
+
 
     public Species1(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings) {
         numberOfSpecies1++;
@@ -50,7 +56,7 @@ public class Species1 extends Entity {
 //        setPosition(positionInit);
         int x = (RandomUtil.getRandomNumberInRange(0, config.window_width));
         int y = (RandomUtil.getRandomNumberInRange(0, config.window_height));
-        this.circle = new Circle(x,y,100);
+        this.circle = new Circle(x,y,20);
 
 
     }
@@ -60,27 +66,29 @@ public class Species1 extends Entity {
         return circle;
     }
 
-    public void die() {
+    public boolean die() {
+        remainingLifeTime--;
         if (remainingLifeTime < 0 || RandomUtil.getRandomNumberInRange(0, 100) < deathByChance) {
             //colony.getSpecies1Set().remove(this);
 
 //            System.out.println("die");
-            iWillDie = true;
             numberOfSpecies1--;
-/
+            return true;
         }
-        remainingLifeTime--;
+        return false;
 //        System.out.println("remaining life: " + remainingLifeTime);
 
     }
 
-    public void replicate() {
+    public boolean replicate() {
         //if random
         if (RandomUtil.getRandomNumberInRange(0, 100) < replicationRate && numberOfSpecies1 < environment.getPopulationLimit()) {
 //            System.out.println("replicate");
             colony.getiWillBorn().add(new Species1(colony, environment, hasColor, hasWings));
+                return true;
 
-
+        }else{
+            return false;
         }
 
     }

@@ -8,6 +8,7 @@ import graphicsLogic.Display;
 import javafx.scene.layout.Pane;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class Simulation extends Pane {
@@ -27,16 +28,18 @@ public class Simulation extends Pane {
     }
 
     public void step(){
-        List<Species1> deathNote = new ArrayList<>();
-        for(Species1 member: colony.getSpecies1Set()){
-            member.replicate();
-            member.die();
-            if (member.isiWillDie())
-                deathNote.add(member);
-        }
-        for (Species1 dyinCreature : deathNote) {
-            colony.getSpecies1Set().remove(dyinCreature);
-        }
+         Iterator<Species1> iter = colony.getSpecies1Set().iterator();
+
+         while (iter.hasNext()) {
+             Species1 member = iter.next();
+             member.replicate();
+//             if (member.replicate()){
+//                 colony.getSpecies1Set().add(new Species1(colony, environment, member.isHasColor(),member.isHasWings()));
+//             }
+             if (member.die()) {
+                 iter.remove();
+             }
+         }
         for (Species1 creatureToBorn : colony.getiWillBorn() ) {
             colony.getSpecies1Set().add(creatureToBorn);
         }
