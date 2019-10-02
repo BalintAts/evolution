@@ -1,5 +1,6 @@
 package biology;
 
+import app.config;
 import graphicsLogic.Display;
 import javafx.scene.image.ImageView;
 
@@ -7,7 +8,7 @@ public abstract class Entity extends ImageView {
 
     protected ColonyManipulate colony;
     protected Environment environment;
-    protected int remainingLifeTime = 50;
+    protected int remainingLifeTime = config.BasicLifetTime;
     protected float deathByChance;
     protected float baseDeathByChance;
     protected Display display;

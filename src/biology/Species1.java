@@ -13,9 +13,7 @@ public class Species1 extends Entity {
 
 
     private int baseReplicationRate = 20;
-    private float mutatedDeathByChanceFactor = (float) 0.9;
-    private int mutatedReplicationrateFactor = 4;
-    private int mutationRate = 50;
+    private int mutationRate = config.mutationRate;
     private boolean hasColor;
     private boolean hasWings;
     private int replicationRate = 20;
@@ -28,8 +26,7 @@ public class Species1 extends Entity {
         super(colony,environment, display);
         this.hasColor = hasColor;
         this.hasWings = hasWings;
-        this.deathByChance = environment.getPredators();
-        deathByChance = environment.getPredators();
+        deathByChance = config.deathChanceOfBlack;
         setImage(new Image("face-without-mouth.jpg"));
         int x = (RandomUtil.getRandomNumberInRange(0, config.window_width));
         int y = (RandomUtil.getRandomNumberInRange(0, config.window_height));
@@ -45,7 +42,7 @@ public class Species1 extends Entity {
     }
 
     private void setDeathByChanceToMutated() {
-        deathByChance = (float) (environment.getPredators() * 0.6);
+        deathByChance = environment.getPredators() * config.mutatedDeathByChanceFactor;
     }
 
     public static int getNumberOfSpecies1() {

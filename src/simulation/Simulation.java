@@ -1,5 +1,6 @@
 package simulation;
 
+import app.config;
 import biology.Colony;
 import biology.ColonyManipulate;
 import biology.Environment;
@@ -27,7 +28,7 @@ public class Simulation extends Pane {
 
 
     public void initAndStart() {
-        colony.create(10, display);
+        colony.create(config.NumberOfinitialCreatures, display);
         numberOFSpecies.setX(50);
         numberOFSpecies.setY(50);
         numberOFSpecies.setFill(textColor);
@@ -45,6 +46,8 @@ public class Simulation extends Pane {
         elapsedTimeText.setFill(textColor);
         elapsedTimeText.setFont(Font.font(null, FontWeight.BOLD, 30));
         display.add(elapsedTimeText);
+
+
 
         gameTimer.setup(this::step);
         gameTimer.play();
