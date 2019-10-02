@@ -61,7 +61,7 @@ public class Simulation extends Pane {
 //             if (member.replicate()){
 //                 colony.getSpecies1Set().add(new Species1(colony, environment, member.isHasColor(),member.isHasWings()));
 //             }
-             if (member.die()) {
+             if (member.die(false)) {
                  iter.remove();
              }
          }

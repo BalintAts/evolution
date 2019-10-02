@@ -50,10 +50,11 @@ public class Species1 extends Entity {
         return circle;
     }
 
-    public boolean die() {
+    public boolean die(boolean mustDie) {
         remainingLifeTime--;
-        if (remainingLifeTime < 0 || RandomUtil.getRandomNumberInRange(0, 100) < deathByChance) {
+        if (remainingLifeTime < 0 || RandomUtil.getRandomNumberInRange(0, 100) < deathByChance || mustDie || numberOfSpecies1 >= environment.getPopulationLimit()) {
             numberOfSpecies1--;
+            System.out.println("die");
             display.remove(circle);
             return true;
         }
@@ -62,12 +63,13 @@ public class Species1 extends Entity {
 
 
     public boolean replicate() {
-        if (RandomUtil.getRandomNumberInRange(0, 100) < replicationRate && numberOfSpecies1 < environment.getPopulationLimit()) {
-            colony.getiWillBorn().add(new Species1(colony, environment, hasColor, hasWings,display));
+        if (RandomUtil.getRandomNumberInRange(0, 100) < replicationRate ) {
+            colony.getiWillBorn().add(new Species1(colony, environment, hasColor, hasWings, display));
+            if (numberOfSpecies1 > environment.getPopulationLimit()-1) {
                 return true;
-        }else{
-            return false;
+            }
         }
+        return false;
     }
 
 

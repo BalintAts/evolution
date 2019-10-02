@@ -25,6 +25,7 @@ public class Display {
     }
 
     public  void remove(Circle circle)  {
+        System.out.println("remove");
         displayPane.getChildren().remove(circle);
     }
 
