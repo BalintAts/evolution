@@ -7,7 +7,7 @@ public abstract class Entity extends ImageView {
 
     protected ColonyManipulate colony;
     protected Environment environment;
-    protected int remainingLifeTime = 100;
+    protected int remainingLifeTime = 50;
     protected float deathByChance;
     protected float baseDeathByChance;
     protected Display display;

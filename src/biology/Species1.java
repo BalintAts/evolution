@@ -13,9 +13,9 @@ public class Species1 extends Entity {
 
 
     private int baseReplicationRate = 20;
-    private float mutatedDeathByChanceFactor = 0;
+    private float mutatedDeathByChanceFactor = (float) 0.9;
     private int mutatedReplicationrateFactor = 4;
-    private int mutationRate = 10;
+    private int mutationRate = 5;
     private boolean hasColor;
     private boolean hasWings;
     private int replicationRate = 20;
@@ -29,20 +29,28 @@ public class Species1 extends Entity {
         this.hasColor = hasColor;
         this.hasWings = hasWings;
         this.deathByChance = environment.getPredators();
-        this.baseDeathByChance = deathByChance;
+        deathByChance = environment.getPredators();
         setImage(new Image("face-without-mouth.jpg"));
         int x = (RandomUtil.getRandomNumberInRange(0, config.window_width));
         int y = (RandomUtil.getRandomNumberInRange(0, config.window_height));
         this.circle = new Circle(x,y,20);
+        circle.setFill(Color.BLACK);
+        mutate();
         if(hasWings){
             circle.setFill(Color.RED);
+            setDeathByChanceToMutated();
         }
         numberOfSpecies1++;
-        mutate();
         display.add(circle);
 
+    }
 
+    private void setDeathByChanceToMutated() {
+        deathByChance = (float) (environment.getPredators() * 0.5);
+    }
 
+    public static int getNumberOfSpecies1() {
+        return numberOfSpecies1;
     }
 
 
@@ -50,9 +58,10 @@ public class Species1 extends Entity {
         return circle;
     }
 
-    public boolean die(boolean mustDie) {
-        remainingLifeTime--;
-        if (remainingLifeTime < 0 || RandomUtil.getRandomNumberInRange(0, 100) < deathByChance || mustDie || numberOfSpecies1 > environment.getPopulationLimit()) {
+
+
+    public boolean die(){
+        if (numberOfSpecies1 >= environment.getPopulationLimit() || remainingLifeTime < 0 || (RandomUtil.getRandomNumberInRange(0, 100) < deathByChance)){
             numberOfSpecies1--;
             display.remove(circle);
             return true;
@@ -74,19 +83,16 @@ public class Species1 extends Entity {
 
 
 
-    public static int getNumberOfSpecies1() {
-        return numberOfSpecies1;
-    }
-
     public void mutate() {
         if (RandomUtil.getRandomNumberInRange(0, 100) < mutationRate) {
             if (!hasWings) {
                 hasWings = true;
-                deathByChance = baseDeathByChance * mutatedDeathByChanceFactor;
+//                deathByChance = (float) (environment.getPredators() * 0); //baseDeathByChance * mutatedDeathByChanceFactor;
+                setDeathByChanceToMutated();
                 circle.setFill(Color.RED);
             } else {
                 hasWings = false;
-                deathByChance = baseDeathByChance;
+                deathByChance = environment.getPredators();
                 circle.setFill(Color.BLACK);
             }
         }
