@@ -52,9 +52,8 @@ public class Species1 extends Entity {
 
     public boolean die(boolean mustDie) {
         remainingLifeTime--;
-        if (remainingLifeTime < 0 || RandomUtil.getRandomNumberInRange(0, 100) < deathByChance || mustDie || numberOfSpecies1 >= environment.getPopulationLimit()) {
+        if (remainingLifeTime < 0 || RandomUtil.getRandomNumberInRange(0, 100) < deathByChance || mustDie || numberOfSpecies1 > environment.getPopulationLimit()) {
             numberOfSpecies1--;
-            System.out.println("die");
             display.remove(circle);
             return true;
         }
