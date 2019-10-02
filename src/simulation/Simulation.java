@@ -7,6 +7,8 @@ import biology.Species1;
 import graphicsLogic.Display;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 import java.util.Iterator;
@@ -20,20 +22,29 @@ public class Simulation extends Pane {
     private Text numberOFSpecies = new Text();
     private Text numberOFReds = new Text();
     private Color textColor = new Color(0, 0, 1, 1);
+    private int elapsedTime = 0;
+    private Text elapsedTimeText = new Text();
 
     public void initAndStart(){
         colony.create(10,display);
         numberOFSpecies.setX(50);
         numberOFSpecies.setY(50);
         numberOFSpecies.setFill(textColor);
-        numberOFSpecies.setStyle("-fx-font: 24 arial;");
+//        numberOFSpecies.setStyle("-fx-font: 24 arial;");
+        numberOFSpecies.setFont(Font.font(null, FontWeight.BOLD, 30));
         display.add(numberOFSpecies);
 
         numberOFReds.setX(50);
         numberOFReds.setY(100);
         numberOFReds.setFill(textColor);
-        numberOFReds.setStyle("-fx-font: 24 arial;");
+        numberOFReds.setFont(Font.font(null, FontWeight.BOLD, 30));
         display.add(numberOFReds);
+
+        elapsedTimeText.setX(50);
+        elapsedTimeText.setY(150);
+        elapsedTimeText.setFill(textColor);
+        elapsedTimeText.setFont(Font.font(null, FontWeight.BOLD, 30));
+        display.add(elapsedTimeText);
 
         gameTimer.setup(this::step);
         gameTimer.play();
@@ -59,6 +70,7 @@ public class Simulation extends Pane {
         }
         colony.getiWillBorn().clear();
         log();
+        elapsedTime++;
     }
 
 
@@ -73,8 +85,10 @@ public class Simulation extends Pane {
 
         numberOFSpecies.toFront();
         numberOFReds.toFront();
+        elapsedTimeText.toFront();
         numberOFSpecies.setText("Creatures:  " + String.valueOf(Species1.getNumberOfSpecies1()));
         numberOFReds.setText("Reds:      " + String.valueOf(numberOfHasWings));
+        elapsedTimeText.setText("Elapsed time:  " + String.valueOf(elapsedTime));
 
         System.out.println("-------------------------------------------");
         System.out.println("number of species1: " + Species1.getNumberOfSpecies1());
