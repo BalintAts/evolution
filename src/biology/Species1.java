@@ -15,7 +15,7 @@ public class Species1 extends Entity {
     private int baseReplicationRate = 20;
     private float mutatedDeathByChanceFactor = (float) 0.9;
     private int mutatedReplicationrateFactor = 4;
-    private int mutationRate = 5;
+    private int mutationRate = 50;
     private boolean hasColor;
     private boolean hasWings;
     private int replicationRate = 20;
@@ -35,7 +35,6 @@ public class Species1 extends Entity {
         int y = (RandomUtil.getRandomNumberInRange(0, config.window_height));
         this.circle = new Circle(x,y,20);
         circle.setFill(Color.BLACK);
-        mutate();
         if(hasWings){
             circle.setFill(Color.RED);
             setDeathByChanceToMutated();
@@ -46,7 +45,7 @@ public class Species1 extends Entity {
     }
 
     private void setDeathByChanceToMutated() {
-        deathByChance = (float) (environment.getPredators() * 0.5);
+        deathByChance = (float) (environment.getPredators() * 0.6);
     }
 
     public static int getNumberOfSpecies1() {
@@ -72,7 +71,7 @@ public class Species1 extends Entity {
 
     public boolean replicate() {
         if (RandomUtil.getRandomNumberInRange(0, 100) < replicationRate ) {
-            colony.getiWillBorn().add(new Species1(colony, environment, hasColor, hasWings, display));
+            colony.getiWillBorn().add(new Species1(colony, environment, hasColor, mutate(), display));
             if (numberOfSpecies1 > environment.getPopulationLimit()-1) {
                 return true;
             }
@@ -83,19 +82,17 @@ public class Species1 extends Entity {
 
 
 
-    public void mutate() {
+    public boolean mutate() {
         if (RandomUtil.getRandomNumberInRange(0, 100) < mutationRate) {
             if (!hasWings) {
-                hasWings = true;
+                return true;
 //                deathByChance = (float) (environment.getPredators() * 0); //baseDeathByChance * mutatedDeathByChanceFactor;
-                setDeathByChanceToMutated();
-                circle.setFill(Color.RED);
-            } else {
-                hasWings = false;
-                deathByChance = environment.getPredators();
-                circle.setFill(Color.BLACK);
+            }
+            else {
+                return false;
             }
         }
+        return hasWings;
     }
 
     public boolean isHasWings() {

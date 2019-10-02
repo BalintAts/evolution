@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="891df88e-6da8-418a-bd1f-a531edc0b149" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/biology/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/biology/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/biology/Environment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/biology/Environment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/biology/Species1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/biology/Species1.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/simulation/Simulation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/simulation/Simulation.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -23,16 +20,16 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/biology/Species1.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="90" column="44" selection-start-line="90" selection-start-column="44" selection-end-line="90" selection-end-column="44" />
+            <state relative-caret-position="439">
+              <caret line="87" column="28" lean-forward="true" selection-start-line="87" selection-start-column="28" selection-end-line="87" selection-end-column="28" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1470#1471#0" expanded="true" />
                 <element signature="e#1531#1532#0" expanded="true" />
-                <element signature="e#1630#1631#0" expanded="true" />
-                <element signature="e#1693#1694#0" expanded="true" />
-                <element signature="e#3011#3012#0" expanded="true" />
-                <element signature="e#3077#3078#0" expanded="true" />
+                <element signature="e#1611#1612#0" expanded="true" />
+                <element signature="e#1674#1675#0" expanded="true" />
+                <element signature="e#2830#2831#0" expanded="true" />
+                <element signature="e#2896#2897#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -50,7 +47,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/simulation/Simulation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
+            <state relative-caret-position="-266">
               <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -112,8 +109,8 @@
         <option value="$PROJECT_DIR$/src/biology/ColonyManipulate.java" />
         <option value="$PROJECT_DIR$/src/graphicsLogic/Display.java" />
         <option value="$PROJECT_DIR$/src/simulation/Simulation.java" />
-        <option value="$PROJECT_DIR$/src/biology/Environment.java" />
         <option value="$PROJECT_DIR$/src/biology/Entity.java" />
+        <option value="$PROJECT_DIR$/src/biology/Environment.java" />
         <option value="$PROJECT_DIR$/src/biology/Species1.java" />
       </list>
     </option>
@@ -244,12 +241,12 @@
       <workItem from="1570002858730" duration="5071000" />
       <workItem from="1570008290713" duration="7012000" />
       <workItem from="1570016836310" duration="9294000" />
-      <workItem from="1570030267902" duration="5303000" />
+      <workItem from="1570030267902" duration="6430000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="63322000" />
+    <option name="totallyTimeSpent" value="64449000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
@@ -272,7 +269,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Terminal" order="10" weight="0.3286638" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32829374" />
       <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="12" weight="0.29049677" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -564,20 +561,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/simulation/Simulation.java">
+    <entry file="file://$PROJECT_DIR$/src/biology/Entity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
+        <state relative-caret-position="240">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/biology/Entity.java">
+    <entry file="file://$PROJECT_DIR$/src/simulation/Simulation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+        <state relative-caret-position="-266">
+          <caret line="17" column="56" lean-forward="true" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="56" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -593,16 +590,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/biology/Species1.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="90" column="44" selection-start-line="90" selection-start-column="44" selection-end-line="90" selection-end-column="44" />
+        <state relative-caret-position="439">
+          <caret line="87" column="28" lean-forward="true" selection-start-line="87" selection-start-column="28" selection-end-line="87" selection-end-column="28" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#1470#1471#0" expanded="true" />
             <element signature="e#1531#1532#0" expanded="true" />
-            <element signature="e#1630#1631#0" expanded="true" />
-            <element signature="e#1693#1694#0" expanded="true" />
-            <element signature="e#3011#3012#0" expanded="true" />
-            <element signature="e#3077#3078#0" expanded="true" />
+            <element signature="e#1611#1612#0" expanded="true" />
+            <element signature="e#1674#1675#0" expanded="true" />
+            <element signature="e#2830#2831#0" expanded="true" />
+            <element signature="e#2896#2897#0" expanded="true" />
           </folding>
         </state>
       </provider>
