@@ -7,13 +7,13 @@ import java.util.Set;
 
 public interface ColonyManipulate {
 
-    public Set<Species1> getSpecies1Set();
+    public Set<Species> getSpeciesSet();
 
     public void create(int initNumberOfSpecies1, Display display);
 
-    public void destroy(Species1 creature);
+    public void destroy(Species creature);
 
-    public List<Species1> getiWillBorn();
+    public List<Species> getiWillBorn();
 
 
     }

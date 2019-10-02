@@ -9,11 +9,11 @@ import utils.RandomUtil;
 
 
 
-public class Species1 extends Entity {
+public class Species extends Entity {
 
 
     private int baseReplicationRate = 20;
-    private int mutationRate = config.mutationRate;
+    private int mutationRate = config.MUTATION_RATE;
     private boolean hasColor;
     private boolean hasWings;
     private int replicationRate = 20;
@@ -22,14 +22,14 @@ public class Species1 extends Entity {
 
 
 
-    public Species1(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings, Display display) {
+    public Species(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings, Display display) {
         super(colony,environment, display);
         this.hasColor = hasColor;
         this.hasWings = hasWings;
-        deathByChance = config.deathChanceOfBlack;
+        deathByChance = config.DEATH_CHANCE_OF_BLACK;
         setImage(new Image("face-without-mouth.jpg"));
-        int x = (RandomUtil.getRandomNumberInRange(0, config.window_width));
-        int y = (RandomUtil.getRandomNumberInRange(0, config.window_height));
+        int x = (RandomUtil.getRandomNumberInRange(0, config.WINDOW_WIDTH));
+        int y = (RandomUtil.getRandomNumberInRange(0, config.WINDOW_HEIGHT));
         this.circle = new Circle(x,y,20);
         circle.setFill(Color.BLACK);
         if(hasWings){
@@ -42,7 +42,7 @@ public class Species1 extends Entity {
     }
 
     private void setDeathByChanceToMutated() {
-        deathByChance = environment.getPredators() * config.mutatedDeathByChanceFactor;
+        deathByChance = environment.getPredators() * config.MUTATED_DEATH_BY_CHANCE_FACTOR;
     }
 
     public static int getNumberOfSpecies1() {
@@ -68,7 +68,7 @@ public class Species1 extends Entity {
 
     public boolean replicate() {
         if (RandomUtil.getRandomNumberInRange(0, 100) < replicationRate ) {
-            colony.getiWillBorn().add(new Species1(colony, environment, hasColor, mutate(), display));
+            colony.getiWillBorn().add(new Species(colony, environment, hasColor, mutate(), display));
             if (numberOfSpecies1 > environment.getPopulationLimit()-1) {
                 return true;
             }
@@ -83,7 +83,7 @@ public class Species1 extends Entity {
         if (RandomUtil.getRandomNumberInRange(0, 100) < mutationRate) {
             if (!hasWings) {
                 return true;
-//                deathByChance = (float) (environment.getPredators() * 0); //baseDeathByChance * mutatedDeathByChanceFactor;
+//                deathByChance = (float) (environment.getPredators() * 0); //baseDeathByChance * MUTATED_DEATH_BY_CHANCE_FACTOR;
             }
             else {
                 return false;

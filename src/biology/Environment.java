@@ -3,7 +3,7 @@ package biology;
 import app.config;
 
 public class Environment {
-    private int populationLimit = config.populationLimit;
+    private int populationLimit = config.POPULATION_LIMIT;
     private int predators = 24;
 
     public int getPopulationLimit() {

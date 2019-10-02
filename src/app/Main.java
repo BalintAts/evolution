@@ -17,7 +17,7 @@ public class Main extends Application {
     public void start(Stage primaryStage){
         Simulation simulation = new Simulation();
 
-        Scene mainScene = new Scene(simulation, config.window_width, config.window_height);
+        Scene mainScene = new Scene(simulation, config.WINDOW_WIDTH, config.WINDOW_HEIGHT);
 
         primaryStage.setTitle("Evolution");
         primaryStage.setScene(mainScene);

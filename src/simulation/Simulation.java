@@ -4,7 +4,7 @@ import app.config;
 import biology.Colony;
 import biology.ColonyManipulate;
 import biology.Environment;
-import biology.Species1;
+import biology.Species;
 import graphicsLogic.Display;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
@@ -28,7 +28,7 @@ public class Simulation extends Pane {
 
 
     public void initAndStart() {
-        colony.create(config.NumberOfinitialCreatures, display);
+        colony.create(config.NUMBER_OF_INITIAL_CREATURES, display);
         numberOFSpecies.setX(50);
         numberOFSpecies.setY(50);
         numberOFSpecies.setFill(textColor);
@@ -55,27 +55,27 @@ public class Simulation extends Pane {
 
 
     public void step() {
-        Iterator<Species1> iter = colony.getSpecies1Set().iterator();
+        Iterator<Species> iter = colony.getSpeciesSet().iterator();
 
         while (iter.hasNext()) {
-            Species1 member = iter.next();
+            Species member = iter.next();
             member.replicate();
             if (member.die()) {
                 iter.remove();
             }
         }
-        for (Species1 creatureToBorn : colony.getiWillBorn()) {
-            colony.getSpecies1Set().add(creatureToBorn);
+        for (Species creatureToBorn : colony.getiWillBorn()) {
+            colony.getSpeciesSet().add(creatureToBorn);
         }
         colony.getiWillBorn().clear();
-        log();
         elapsedTime++;
+        log();
     }
 
 
     public void log() {
         int numberOfHasWings = 0;
-        for (Species1 creature : colony.getSpecies1Set()) {
+        for (Species creature : colony.getSpeciesSet()) {
             if (creature.isHasWings()) {
                 numberOfHasWings++;
             }
@@ -84,12 +84,12 @@ public class Simulation extends Pane {
         numberOFSpecies.toFront();
         numberOFReds.toFront();
         elapsedTimeText.toFront();
-        numberOFSpecies.setText("Creatures:  " + String.valueOf(Species1.getNumberOfSpecies1()));
+        numberOFSpecies.setText("Creatures:  " + String.valueOf(Species.getNumberOfSpecies1()));
         numberOFReds.setText("Reds:      " + String.valueOf(numberOfHasWings));
         elapsedTimeText.setText("Elapsed time:  " + String.valueOf(elapsedTime));
 
 //        System.out.println("-------------------------------------------");
-//        System.out.println("number of species1: " + Species1.getNumberOfSpecies1());
+//        System.out.println("number of species1: " + Species.getNumberOfSpecies1());
 //        System.out.println("has wings: " + numberOfHasWings);
     }
 }
