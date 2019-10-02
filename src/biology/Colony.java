@@ -1,5 +1,7 @@
 package biology;
 
+import graphicsLogic.Display;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -16,9 +18,9 @@ public class Colony implements ColonyManipulate {
         this.environment = environment;
     }
 
-    public void create(int initNumberOfSpecies1){
+    public void create(int initNumberOfSpecies1, Display display){
         for (int i = 0; i < initNumberOfSpecies1; i++) {
-             species1Set.add(new Species1(this, environment, false, false));
+             species1Set.add(new Species1(this, environment, false, false, display));
         }
     }
 

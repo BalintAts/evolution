@@ -7,9 +7,7 @@ import biology.Species1;
 import graphicsLogic.Display;
 import javafx.scene.layout.Pane;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 public class Simulation extends Pane {
 
@@ -20,9 +18,9 @@ public class Simulation extends Pane {
     private GameTimer gameTimer = new GameTimer();
 
     public void initAndStart(){
-        colony.create(10);
+        colony.create(10,display);
         simulationLoop();
-        gameTimer.setup(this::step); //this::render
+        gameTimer.setup(this::step);
         gameTimer.play();
 
     }
@@ -44,7 +42,7 @@ public class Simulation extends Pane {
             colony.getSpecies1Set().add(creatureToBorn);
         }
         colony.getiWillBorn().clear();
-        render();
+//        render();
         log();
     }
 
@@ -53,7 +51,6 @@ public class Simulation extends Pane {
         for(Species1 member: colony.getSpecies1Set()){
             display.add(member.getCircle());
         }
-//        display.displayCircle();  //experiment
     }
 
     public void simulationLoop(){
@@ -65,21 +62,13 @@ public class Simulation extends Pane {
 
     public void log(){
         int numberOfHasWings = 0;
-        int numberOfHasColor = 0;
         for(Species1 creature: colony.getSpecies1Set()){
             if (creature.isHasWings()){
                 numberOfHasWings++;
             }
-            if (creature.isHasColor()){
-                numberOfHasColor++;
-            }
         }
         System.out.println("-------------------------------------------");
-//        System.out.println("population limit: " + environment.getPopulationLimit());
-//        System.out.println("predators: " + environment.getPredators());
-//        System.out.println("                              ");
         System.out.println("number of species1: " + Species1.getNumberOfSpecies1());
         System.out.println("has wings: " + numberOfHasWings);
-//        System.out.println("has color: " + numberOfHasColor);
     }
 }

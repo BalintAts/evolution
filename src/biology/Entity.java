@@ -1,41 +1,27 @@
 package biology;
 
-import com.sun.javafx.geom.Vec2d;
-
-import javax.swing.text.Element;
+import graphicsLogic.Display;
 import javafx.scene.image.ImageView;
-import javafx.scene.shape.Circle;
-
-import java.util.concurrent.CyclicBarrier;
 
 public abstract class Entity extends ImageView {
 
+    protected ColonyManipulate colony;
+    protected Environment environment;
+    protected int remainingLifeTime = 100;
+    protected float deathByChance;
+    protected float baseDeathByChance;
+    protected Display display;
 
 
 
-    public Entity() {
+
+    public Entity(ColonyManipulate colony, Environment environment, Display display){
+        this.colony = colony;
+        this.environment = environment;
+        this.display = display;
     }
 
-
-
-//    public void destroy() {
-//        Globals.getInstance().display.remove(this);
-//    }
-//
-    public Vec2d getPosition() {
-        return new Vec2d(getX(), getY());
+    public Environment getEnvironment() {
+        return environment;
     }
-
-    public void setPosition(Vec2d pos) {
-        setX(pos.x);
-        setY(pos.y);
-    }
-//
-//    public boolean isOutOfBounds() {
-//        if (getX() > Globals.WINDOW_WIDTH - 30 || getX() < 0 ||
-//                getY() > Globals.WINDOW_HEIGHT - 30 || getY() < 0) {
-//            return true;
-//        }
-//        return false;
-//    }
 }
