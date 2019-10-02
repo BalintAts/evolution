@@ -1,36 +1,41 @@
 package biology;
 
+import app.config;
 import com.sun.javafx.geom.Vec2d;
 import javafx.scene.image.Image;
+import javafx.scene.shape.Circle;
 import utils.RandomUtil;
 
 import javax.swing.text.Element;
 import javafx.scene.image.ImageView;
 
+import java.io.ObjectInputFilter;
+
 public class Species1 extends Entity {
 
     private float deathByChance;
     private float baseDeathByChance;
-    private int baseReplicationRate = 5;
+//    private int baseReplicationRate = 20;
     private float mutatedDeathByChanceFactor = 0;
     private int mutatedReplicationrateFactor = 4;
     private int mutationRate = 10;
     private int remainingLifeTime = 100;
     private boolean hasColor;
     private boolean hasWings;
-    private int replicationRate = 5;
+    private int replicationRate = 20;
     private ColonyManipulate colony;
     private static int numberOfSpecies1 = 0;
     private static int numberOfHasColor = 0;
     private static int numberOfHasWings = 0;
     private Environment environment;
     private boolean iWillDie = false;
+    private Circle circle;
 
     public boolean isiWillDie() {
         return iWillDie;
     }
 
-    public Species1(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings) { ;
+    public Species1(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings) {
         numberOfSpecies1++;
         this.colony = colony;
         this.environment = environment;
@@ -40,37 +45,39 @@ public class Species1 extends Entity {
         this.baseDeathByChance = deathByChance;
         mutate();
         setImage(new Image("face-without-mouth.jpg"));
+
 //        Vec2d positionInit = new Vec2d(300,300);
 //        setPosition(positionInit);
-        setX(300);
-        setY(300);
+        int x = (RandomUtil.getRandomNumberInRange(0, config.window_width));
+        int y = (RandomUtil.getRandomNumberInRange(0, config.window_height));
+        this.circle = new Circle(x,y,100);
+
 
     }
 
 
+    public Circle getCircle() {
+        return circle;
+    }
 
     public void die() {
         if (remainingLifeTime < 0 || RandomUtil.getRandomNumberInRange(0, 100) < deathByChance) {
+            //colony.getSpecies1Set().remove(this);
 
-            System.out.println("die");
+//            System.out.println("die");
             iWillDie = true;
             numberOfSpecies1--;
-//            if (hasWings){
-//                numberOfHasWings--;
-//            }
-//            if (hasColor){
-//                numberOfHasColor--;
-//            }
+/
         }
         remainingLifeTime--;
-        System.out.println("remaining life: " + remainingLifeTime);
+//        System.out.println("remaining life: " + remainingLifeTime);
 
     }
 
     public void replicate() {
         //if random
         if (RandomUtil.getRandomNumberInRange(0, 100) < replicationRate && numberOfSpecies1 < environment.getPopulationLimit()) {
-            System.out.println("replicate");
+//            System.out.println("replicate");
             colony.getiWillBorn().add(new Species1(colony, environment, hasColor, hasWings));
 
 
@@ -92,7 +99,7 @@ public class Species1 extends Entity {
 
     public void mutate() {
         if (RandomUtil.getRandomNumberInRange(0, 100) < mutationRate) {
-            System.out.println("mutation hasWings");
+//            System.out.println("mutation hasWings");
             if (!hasWings) {
                 hasWings = true;
                 this.deathByChance = baseDeathByChance * mutatedDeathByChanceFactor;
@@ -102,16 +109,17 @@ public class Species1 extends Entity {
                 deathByChance = baseDeathByChance;
             }
         }
-        if (RandomUtil.getRandomNumberInRange(0, 100) < mutationRate) {
-            if(!hasColor) {
-                System.out.println("mutation hasColor");
-                hasColor = true;
-                this.replicationRate = baseReplicationRate * mutatedReplicationrateFactor;
-            } else {
-                hasColor = false;
-                this.replicationRate = baseReplicationRate;
-            }
-        }
+//        if (RandomUtil.getRandomNumberInRange(0, 100) < mutationRate) {
+//            if(!hasColor) {
+//                System.out.println("mutation hasColor");
+//                hasColor = true;
+//                this.replicationRate = baseReplicationRate * mutatedReplicationrateFactor;
+//                this.deathByChance = deathByChance * mutatedReplicationrateFactor;   // as if they have color, predators recognize them easier
+//            } else {
+//                hasColor = false;
+//                this.replicationRate = baseReplicationRate;
+//            }
+//        }
         //---------------------------------------------------------------------------
 //        if (hasWings){
 //            deathByChance = mutatedDeathByChance;

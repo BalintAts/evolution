@@ -4,12 +4,19 @@ import com.sun.javafx.geom.Vec2d;
 
 import javax.swing.text.Element;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Circle;
 
-public class Entity extends ImageView {
+import java.util.concurrent.CyclicBarrier;
+
+public abstract class Entity extends ImageView {
+
+
 
 
     public Entity() {
     }
+
+
 
 //    public void destroy() {
 //        Globals.getInstance().display.remove(this);

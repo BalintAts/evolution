@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
+import javafx.scene.shape.Circle;
 import javafx.scene.text.Text;
 
 public class Display {
@@ -19,10 +20,22 @@ public class Display {
         displayPane = pane;
     }
 
+
     public void add(Entity entity) {
+
         displayPane.getChildren().add(entity);
         gameObjects.add(entity);
     }
+
+
+    public void add(Circle circle) {
+
+        displayPane.getChildren().add(circle);
+//        gameObjects.add(entity);
+    }
+
+
+
 
     public void remove(ObjectToDraw entity) {
         displayPane.getChildren().remove(entity);
@@ -46,7 +59,11 @@ public class Display {
         displayPane.getChildren().add(text);
     }
 
-    public void add(Label label){
+    public void add(Label label) {
         displayPane.getChildren().add(label);
     }
+
+//    public void displayCircle() {
+//        displayPane.getChildren().add(circleExperiment);
+//    }
 }

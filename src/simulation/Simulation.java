@@ -21,7 +21,7 @@ public class Simulation extends Pane {
     public void initAndStart(){
         colony.create(10);
         simulationLoop();
-        gameTimer.setup(this::step);
+        gameTimer.setup(this::step); //this::render
         gameTimer.play();
 
     }
@@ -47,9 +47,10 @@ public class Simulation extends Pane {
 
     public void render(){
         display.clear();
-//        for(Species1 member: colony.getSpecies1Set()){
-//            display.add(member);
-//        }
+        for(Species1 member: colony.getSpecies1Set()){
+            display.add(member.getCircle());
+        }
+//        display.displayCircle();  //experiment
     }
 
     public void simulationLoop(){
@@ -76,6 +77,6 @@ public class Simulation extends Pane {
 //        System.out.println("                              ");
         System.out.println("number of species1: " + Species1.getNumberOfSpecies1());
         System.out.println("has wings: " + numberOfHasWings);
-        System.out.println("has color: " + numberOfHasColor);
+//        System.out.println("has color: " + numberOfHasColor);
     }
 }
