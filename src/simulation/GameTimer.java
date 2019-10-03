@@ -5,13 +5,9 @@ import javafx.animation.Timeline;
 import javafx.util.Duration;
 
 public class GameTimer {
-    private static final double FPS = 0.1;
+
     private double frameTime = 0.1;
     private Timeline timeline = new Timeline();
-
-    GameTimer() {
-        System.out.println(FPS);
-    }
 
 
     public void setup(Runnable loopMethod) {
@@ -20,7 +16,7 @@ public class GameTimer {
         KeyFrame kf = new KeyFrame(
                 Duration.seconds(frameTime),
                 ae -> loopMethod.run());
-
+        timeline.getKeyFrames().clear();
         timeline.getKeyFrames().add( kf );
     }
 

@@ -7,15 +7,13 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import utils.RandomUtil;
 
-import java.util.Iterator;
-
 
 public class Species extends Entity {
 
 
     private int baseReplicationRate = 20;
     private int mutationRate = config.MUTATION_RATE;
-    private boolean hasColor;
+    private boolean hasStunningEyes;
     private boolean hasWings;
     private int replicationRate = 20;
     private static int numberOfSpecies1 = 0;
@@ -23,9 +21,9 @@ public class Species extends Entity {
     protected float deathByChance;
 
 
-    public Species(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings, Display display) {
+    public Species(ColonyManipulate colony, Environment environment, boolean hasStunningEyes, boolean hasWings, Display display) {
         super(colony, environment, display);
-        this.hasColor = hasColor;
+        this.hasStunningEyes = hasStunningEyes;
         this.hasWings = hasWings;
         deathByChance = config.DEATH_CHANCE_OF_BLACK;
         setImage(new Image("face-without-mouth.jpg"));
@@ -40,6 +38,10 @@ public class Species extends Entity {
         numberOfSpecies1++;
         display.add(circle);
 
+    }
+
+    public static void setNumberOfSpecies1(int numberOfSpecies1) {
+        Species.numberOfSpecies1 = numberOfSpecies1;
     }
 
     private void setDeathByChanceToMutated() {
@@ -68,7 +70,7 @@ public class Species extends Entity {
 
     public boolean replicate() {
         if (RandomUtil.getRandomNumberInRange(0, 100) < replicationRate ) {
-            colony.getiWillBorn().add(new Species(colony, environment, hasColor, mutate(), display));
+            colony.getiWillBorn().add(new Species(colony, environment, hasStunningEyes, mutate(), display));
             if (numberOfSpecies1 >= environment.getPopulationLimit() - 1) {
 //                colony.getSpeciesSet().remove(this);
                 return true;
@@ -94,7 +96,7 @@ public class Species extends Entity {
             return hasWings;
         }
 
-        public boolean isHasColor () {
-            return hasColor;
+        public boolean isHasStunningEyes() {
+            return hasStunningEyes;
         }
     }

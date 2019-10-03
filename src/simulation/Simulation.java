@@ -64,6 +64,7 @@ public class Simulation extends Pane {
         restartButton.setPrefSize(100, 40);
         restartButton.setStyle("-fx-font-family: 'Chalkboard'; -fx-background-color: #65A655; -fx-font-size: 15px");
         restartButton.toFront();
+        Species.setNumberOfSpecies1(0);
 
         display.add(restartButton);
         restartButton.setOnMouseClicked(event -> {
