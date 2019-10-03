@@ -9,8 +9,6 @@ public abstract class Entity extends ImageView {
     protected ColonyManipulate colony;
     protected Environment environment;
     protected int remainingLifeTime = config.BASIC_LIFE_TIME;
-    protected float deathByChance;
-    protected float baseDeathByChance;
     protected Display display;
 
 

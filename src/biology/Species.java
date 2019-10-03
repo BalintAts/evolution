@@ -7,6 +7,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import utils.RandomUtil;
 
+import java.util.Iterator;
 
 
 public class Species extends Entity {
@@ -19,20 +20,20 @@ public class Species extends Entity {
     private int replicationRate = 20;
     private static int numberOfSpecies1 = 0;
     private Circle circle;
-
+    protected float deathByChance;
 
 
     public Species(ColonyManipulate colony, Environment environment, boolean hasColor, boolean hasWings, Display display) {
-        super(colony,environment, display);
+        super(colony, environment, display);
         this.hasColor = hasColor;
         this.hasWings = hasWings;
         deathByChance = config.DEATH_CHANCE_OF_BLACK;
         setImage(new Image("face-without-mouth.jpg"));
         int x = (RandomUtil.getRandomNumberInRange(0, config.WINDOW_WIDTH));
         int y = (RandomUtil.getRandomNumberInRange(0, config.WINDOW_HEIGHT));
-        this.circle = new Circle(x,y,20);
+        this.circle = new Circle(x, y, 20);
         circle.setFill(Color.BLACK);
-        if(hasWings){
+        if (hasWings) {
             circle.setFill(Color.RED);
             setDeathByChanceToMutated();
         }
@@ -55,9 +56,8 @@ public class Species extends Entity {
     }
 
 
-
-    public boolean die(){
-        if (numberOfSpecies1 >= environment.getPopulationLimit() || remainingLifeTime < 0 || (RandomUtil.getRandomNumberInRange(0, 100) < deathByChance)){
+    public boolean die(Boolean mustDie) {
+        if (numberOfSpecies1 >= environment.getPopulationLimit() || remainingLifeTime < 0 || (RandomUtil.getRandomNumberInRange(0, 100) < deathByChance || mustDie)) {
             numberOfSpecies1--;
             display.remove(circle);
             return true;
@@ -69,7 +69,8 @@ public class Species extends Entity {
     public boolean replicate() {
         if (RandomUtil.getRandomNumberInRange(0, 100) < replicationRate ) {
             colony.getiWillBorn().add(new Species(colony, environment, hasColor, mutate(), display));
-            if (numberOfSpecies1 > environment.getPopulationLimit()-1) {
+            if (numberOfSpecies1 >= environment.getPopulationLimit() - 1) {
+//                colony.getSpeciesSet().remove(this);
                 return true;
             }
         }
@@ -77,26 +78,23 @@ public class Species extends Entity {
     }
 
 
-
-
-    public boolean mutate() {
-        if (RandomUtil.getRandomNumberInRange(0, 100) < mutationRate) {
-            if (!hasWings) {
-                return true;
+        public boolean mutate () {
+            if (RandomUtil.getRandomNumberInRange(0, 100) < mutationRate) {
+                if (!hasWings) {
+                    return true;
 //                deathByChance = (float) (environment.getPredators() * 0); //baseDeathByChance * MUTATED_DEATH_BY_CHANCE_FACTOR;
+                } else {
+                    return false;
+                }
             }
-            else {
-                return false;
-            }
+            return hasWings;
         }
-        return hasWings;
-    }
 
-    public boolean isHasWings() {
-        return hasWings;
-    }
+        public boolean isHasWings () {
+            return hasWings;
+        }
 
-    public boolean isHasColor() {
-        return hasColor;
+        public boolean isHasColor () {
+            return hasColor;
+        }
     }
-}

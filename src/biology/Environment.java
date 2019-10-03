@@ -4,7 +4,7 @@ import app.config;
 
 public class Environment {
     private int populationLimit = config.POPULATION_LIMIT;
-    private int predators = 24;
+    private int predators = config.DEATH_CHANCE_OF_BLACK;
 
     public int getPopulationLimit() {
         return populationLimit;

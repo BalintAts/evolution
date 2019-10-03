@@ -6,6 +6,7 @@ import biology.ColonyManipulate;
 import biology.Environment;
 import biology.Species;
 import graphicsLogic.Display;
+import javafx.scene.control.Button;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -25,9 +26,14 @@ public class Simulation extends Pane {
     private Color textColor = new Color(0, 0, 1, 1);
     private int elapsedTime = 0;
     private Text elapsedTimeText = new Text();
+    private Button restartButton;
 
 
     public void initAndStart() {
+
+        createRestartButton();
+        elapsedTime = 0;
+
         colony.create(config.NUMBER_OF_INITIAL_CREATURES, display);
         numberOFSpecies.setX(50);
         numberOFSpecies.setY(50);
@@ -47,10 +53,30 @@ public class Simulation extends Pane {
         elapsedTimeText.setFont(Font.font(null, FontWeight.BOLD, 30));
         display.add(elapsedTimeText);
 
-
-
         gameTimer.setup(this::step);
         gameTimer.play();
+    }
+
+    private void createRestartButton() {
+        restartButton = new Button("RESTART");
+        restartButton.setLayoutX(config.WINDOW_WIDTH - 200);
+        restartButton.setLayoutY(50);
+        restartButton.setPrefSize(100, 40);
+        restartButton.setStyle("-fx-font-family: 'Chalkboard'; -fx-background-color: #65A655; -fx-font-size: 15px");
+        restartButton.toFront();
+
+        display.add(restartButton);
+        restartButton.setOnMouseClicked(event -> {
+            restartGame();
+        });
+    }
+
+    private void restartGame() {
+        gameTimer.stop();
+        display.clear();
+        colony.getiWillBorn().clear();
+        colony.getSpeciesSet().clear();
+        initAndStart();
     }
 
 
@@ -59,8 +85,8 @@ public class Simulation extends Pane {
 
         while (iter.hasNext()) {
             Species member = iter.next();
-            member.replicate();
-            if (member.die()) {
+            boolean mustDie = member.replicate();
+            if (member.die(mustDie)) {
                 iter.remove();
             }
         }
@@ -81,6 +107,7 @@ public class Simulation extends Pane {
             }
         }
 
+        restartButton.toFront();
         numberOFSpecies.toFront();
         numberOFReds.toFront();
         elapsedTimeText.toFront();
@@ -88,8 +115,8 @@ public class Simulation extends Pane {
         numberOFReds.setText("Reds:      " + String.valueOf(numberOfHasWings));
         elapsedTimeText.setText("Elapsed time:  " + String.valueOf(elapsedTime));
 
-//        System.out.println("-------------------------------------------");
-//        System.out.println("number of species1: " + Species.getNumberOfSpecies1());
-//        System.out.println("has wings: " + numberOfHasWings);
+        System.out.println("-------------------------------------------");
+        System.out.println("number of species1: " + Species.getNumberOfSpecies1());
+        System.out.println("has wings: " + numberOfHasWings);
     }
 }

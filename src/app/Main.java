@@ -2,6 +2,7 @@ package app;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import simulation.Simulation;
 
@@ -22,7 +23,6 @@ public class Main extends Application {
         primaryStage.setTitle("Evolution");
         primaryStage.setScene(mainScene);
         primaryStage.show();
-
 
         simulation.initAndStart();
     }
